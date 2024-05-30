@@ -14,15 +14,15 @@ func index(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, string("let's go app!"))
+	fmt.Fprint(w, string("let's go app!"))
 }
 
 func readiness(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, string("i'm ready!!"))
+	fmt.Fprint(w, string("i'm ready!!"))
 }
 
 func liveness(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, string("i'm alive!!"))
+	fmt.Fprint(w, string("i'm alive!!"))
 }
 
 func appinfo(w http.ResponseWriter, r *http.Request) {
@@ -40,7 +40,7 @@ func appinfo(w http.ResponseWriter, r *http.Request) {
 	if appInfoJSON, err := json.Marshal(appInfo); err != nil {
 		http.Error(w, "Internal Server Error", 500)
 	} else {
-		fmt.Fprintf(w, string(appInfoJSON))
+		fmt.Fprint(w, string(appInfoJSON))
 	}
 
 	return
