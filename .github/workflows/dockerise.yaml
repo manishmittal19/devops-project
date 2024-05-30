@@ -1,0 +1,25 @@
+name: Docker Build
+
+on:
+  push:
+    paths:
+      - 'apps/letsgo/**'
+    branches:
+      - main
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            - name: Docker Build
+              run: |
+                cd apps/letsgo && make docker-build
+                docker images
+            - name: Docker Push
+              env:
+                DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+                DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+              run: |
+                cd apps/letsgo && make docker-push
