@@ -1,0 +1,21 @@
+name: Aws cli
+
+on:
+  push:
+    branches:
+      - main
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+   gh-actions-awscli:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+            - name: AWS Assume Role
+              uses: aws-actions/configure-aws-credentials@v4
+              run: |
+                aws sts assume-role --role-arn arn:aws:iam::975049932312:role/githubactions3fullaccess --role-session-name "AssumeRoleSession" > assume-role-output.txt
+                aws s3 ls
