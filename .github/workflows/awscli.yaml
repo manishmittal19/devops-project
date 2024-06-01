@@ -18,5 +18,6 @@ jobs:
               uses: aws-actions/configure-aws-credentials@v4
             - name: AWS CLI   
               run: |
-                aws sts assume-role --role-arn arn:aws:iam::975049932312:role/githubactions3fullaccess --role-session-name "AssumeRoleSession" aws-region=us-east-1 > assume-role-output.txt
+                aws-region: us-east-1
+                aws sts assume-role --role-arn arn:aws:iam::975049932312:role/githubactions3fullaccess --role-session-name "AssumeRoleSession" > assume-role-output.txt
                 aws s3 ls
